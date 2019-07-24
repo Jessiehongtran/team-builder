@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './App.css';
 
 function Form() {
   const [member, setMember] = useState({ name: "", email: "", role: "" });
@@ -15,10 +15,10 @@ function Form() {
   };
 
   return (
-    <div>
+    <div className="Form">
       {console.log(member)}
       <form onSubmit={event => handleSubmit(event)}>
-        <label>
+        <label className="label">
           Name:
           <input
             type="text"
@@ -27,7 +27,7 @@ function Form() {
             onChange={event => handleChange(event)}
           />
         </label>
-        <label>
+        <label className="label">
           Email:
           <input
             type="text"
@@ -36,7 +36,7 @@ function Form() {
             onChange={event => handleChange(event)}
           />
         </label>
-        <label>
+        <label className="label">
           Role
           <input
             type="text"

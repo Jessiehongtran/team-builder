@@ -31,3 +31,24 @@
     transform: rotate(360deg);
   }
 }
+
+.Form {
+  background-color: #61dafb;
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  font-size: 18px;
+}
+
+input {
+  width: 30%;
+  height: 20px;
+  margin-bottom: 20px;
+}
