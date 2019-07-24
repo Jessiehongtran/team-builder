@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './App.css';
 
 function Form() {
+  const [team, setTeam] = useState([])
   const [member, setMember] = useState({ name: "", email: "", role: "" });
 
   const handleChange = event => {
@@ -10,13 +11,16 @@ function Form() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(member.name);
-    console.log(member.password);
+    team.push(member)
+    setTeam(team)
+    console.log('member in submit',member);
+    
   };
 
   return (
+    <>
     <div className="Form">
-      {console.log(member)}
+      {console.log('member',member)}
       <form onSubmit={event => handleSubmit(event)}>
         <label className="label">
           Name:
@@ -48,6 +52,22 @@ function Form() {
         <button>Submit!</button>
       </form>
     </div>
+
+    <div>Member List</div>
+    <div>
+    {team.map(person =>( 
+        
+        <div key={person}>
+            Name: {person.name}
+            Email: {person.email}
+            Role: {person.role}
+        </div>
+        
+        // console.log('member list', person)
+
+    ))}
+    </div>
+    </>
   );
 }
 
