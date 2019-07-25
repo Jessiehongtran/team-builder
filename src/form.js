@@ -11,8 +11,7 @@ function Form() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    team.push(member)
-    setTeam(team)
+    setTeam([...team,member])
     console.log('member in submit',member);
     
   };
@@ -21,14 +20,14 @@ function Form() {
     <>
     <div className="Form">
       {console.log('member',member)}
-      <form onSubmit={event => handleSubmit(event)}>
+      <form onSubmit={handleSubmit}>
         <label className="label">
           Name:
           <input
             type="text"
             name="name"
             value={member.name}
-            onChange={event => handleChange(event)}
+            onChange={handleChange}
           />
         </label>
         <label className="label">
