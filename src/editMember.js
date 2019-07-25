@@ -1,25 +1,40 @@
 import React, { useState } from "react";
 import './App.css';
 
-function Form() {
+function editMember(props) {
+  console.log('prop', props)
   const [team, setTeam] = useState([])
   const [member, setMember] = useState({ name: "", email: "", role: "" });
+  const [editing, setEditing] = useState(false)
 
   const handleChange = event => {
     setMember({ ...member, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = event => {
+  const handleEdit = e => {
+      setEditing(!editing)
+  }
+
+  const handleUpdate = event => {
     event.preventDefault();
-    setTeam([...team,member])
-    console.log('member in submit',member);
+    setTeam([...team.map(member => {
+        if (member.id === event.id){
+            return event;
+        }
+        return member;
+    })])
+    setEditing(false)
+
+    console.log('member in edit',member);
   };
 
-  return (
+  console.log('edit', editing)
+
+  return editing? (
     <>
     <div className="Form">
       {console.log('member',member)}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUpdate}>
         <label className="label">
           Name:
           <input
@@ -50,23 +65,27 @@ function Form() {
         <button>Submit!</button>
       </form>
     </div>
-
+    </>
+    ):(
+    <>
     <div>Member List</div>
     <div>
     {team.map(person =>( 
-        
+        <div>
         <div key={person}>
             Name: {person.name}
             Email: {person.email}
             Role: {person.role}
         </div>
-        
+        <button onClick={handleEdit}>Edit</button> 
         // console.log('member list', person)
+        </div>
 
     ))}
     </div>
     </>
-  );
+    );
+
 }
 
-export default Form;
+export default editMember;
